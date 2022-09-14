@@ -34,8 +34,7 @@ func ToInt64(input any) int64 {
 			num, _ = strconv.ParseInt(v[2:], 16, 64)
 
 		} else {
-			numx, _ := strconv.Atoi(v)
-			num = int64(numx)
+			num, _ = strconv.ParseInt(v, 10, 64)
 		}
 	case float64:
 		// str := strconv.FormatFloat(v, 'f', -1, 64)
