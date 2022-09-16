@@ -7,32 +7,33 @@ import (
 )
 
 func ToDecimal(input any) decimal.Decimal {
-	var num decimal.Decimal
 	switch v := input.(type) {
 	case decimal.Decimal:
-		num = v
+		return v
 	case float64:
-		num = decimal.NewFromFloat(v)
+		return decimal.NewFromFloat(v)
 	case int:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case int8:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case int32:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case int64:
-		num = decimal.NewFromInt(v)
+		return decimal.NewFromInt(v)
 	case uint:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case uint8:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case uint32:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case uint64:
-		num = decimal.NewFromInt(int64(v))
+		return decimal.NewFromInt(int64(v))
 	case *big.Int:
-		num = decimal.NewFromBigInt(v, 0)
+		return decimal.NewFromBigInt(v, 0)
 	case string:
-		num, _ = decimal.NewFromString(v)
+		num, _ := decimal.NewFromString(v)
+		return num
+	default:
+		return decimal.NewFromInt(0)
 	}
-	return num
 }
