@@ -25,7 +25,9 @@ func ToBigInt(input any) *big.Int {
 	case float64:
 		return big.NewInt(ToInt64(v))
 	case string:
-		return big.NewInt(ToInt64(v))
+		x := big.NewInt(0)
+		big, _ := x.SetString(v, 10)
+		return big
 	default:
 		return big.NewInt(0)
 	}
