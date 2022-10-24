@@ -29,10 +29,15 @@ func ToFloat64(input any) float64 {
 		return float64(v)
 	case uint64:
 		return float64(v)
+	case float32:
+		return float64(v)
 	case string:
 		num, _ := strconv.ParseFloat(v, 64)
 		return num
 	case *big.Int:
+		num, _ := strconv.ParseFloat(v.String(), 64)
+		return num
+	case *big.Float:
 		num, _ := strconv.ParseFloat(v.String(), 64)
 		return num
 	case decimal.Decimal:

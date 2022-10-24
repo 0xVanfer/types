@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	common_eth "github.com/ethereum/go-ethereum/common"
+	"github.com/shopspring/decimal"
 )
 
 func ToString(input any) string {
@@ -32,6 +33,8 @@ func ToString(input any) string {
 		return strconv.FormatInt(int64(v), 10)
 	case uint64:
 		return strconv.FormatInt(int64(v), 10)
+	case float32:
+		return strconv.FormatFloat(float64(v), 'f', -1, 64)
 	case float64:
 		return strconv.FormatFloat(v, 'f', -1, 64)
 	case *big.Int:
@@ -40,6 +43,8 @@ func ToString(input any) string {
 		return v.String()
 	case []byte:
 		return string(v)
+	case decimal.Decimal:
+		return v.String()
 	default:
 		return ""
 	}
