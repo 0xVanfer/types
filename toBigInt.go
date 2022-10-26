@@ -6,6 +6,9 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Convert number or string into *big.Int.
+//
+// Input must be number or number string, otherwise will return 0.
 func ToBigInt(input any) *big.Int {
 	switch v := input.(type) {
 	case *big.Int:

@@ -7,6 +7,9 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Convert number or string into float64.
+//
+// Input must be number or number string, otherwise will return 0.
 func ToFloat64(input any) float64 {
 	switch v := input.(type) {
 	case float64:

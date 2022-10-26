@@ -6,6 +6,9 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Convert number or string into decimal.Decimal.
+//
+// Input must be number or number string, otherwise will return 0.
 func ToDecimal(input any) decimal.Decimal {
 	switch v := input.(type) {
 	case decimal.Decimal:

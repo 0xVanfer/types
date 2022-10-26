@@ -1,0 +1,17 @@
+package types
+
+import (
+	"fmt"
+)
+
+func ExampleToAddress() {
+	fmt.Println(ToAddress(1))
+	fmt.Println(ToAddress("111"))
+	fmt.Println(ToAddress("0xdAC17F958D2ee523a2206206994597C13D831ec7"))
+	fmt.Println(ToAddress("0xdac17f958d2ee523a2206206994597c13d831ec7"))
+	// Output:
+	// 0x0000000000000000000000000000000000000000
+	// 0x0000000000000000000000000000000000000000
+	// 0xdAC17F958D2ee523a2206206994597C13D831ec7
+	// 0xdAC17F958D2ee523a2206206994597C13D831ec7
+}

@@ -8,6 +8,15 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Convert number, string or bool value into int64.
+//
+// Input must be number, number string or bool value, otherwise will return 0.
+//
+// Float number will return the round int.
+//
+// Can convert strings start by 0x, 0o or 0b to Dec int.
+//
+// True ==> 1; False ==> 0.
 func ToInt64(input any) int64 {
 	switch v := input.(type) {
 	case int:
@@ -51,6 +60,8 @@ func ToInt64(input any) int64 {
 		return int64(math.Round(v))
 	case *big.Int:
 		return v.Int64()
+	case *big.Float:
+		return int64(math.Round(ToFloat64(v)))
 	case bool:
 		// true 1; false 0
 		if v {
@@ -66,6 +77,8 @@ func ToInt64(input any) int64 {
 
 }
 
+// Convert number, string or bool value into int64,
+// and then convert into int.
 func ToInt(input any) int {
 	return int(ToInt64(input))
 }

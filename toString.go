@@ -9,6 +9,7 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// Convert anything to string.
 func ToString(input any) string {
 	switch v := input.(type) {
 	case string:
@@ -39,12 +40,20 @@ func ToString(input any) string {
 		return strconv.FormatFloat(v, 'f', -1, 64)
 	case *big.Int:
 		return v.String()
+	case *big.Float:
+		return v.String()
 	case common_eth.Address:
 		return v.String()
 	case []byte:
 		return string(v)
 	case decimal.Decimal:
 		return v.String()
+	case bool:
+		if v {
+			return "true"
+		} else {
+			return "false"
+		}
 	default:
 		return ""
 	}
