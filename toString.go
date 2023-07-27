@@ -48,6 +48,8 @@ func ToString(input any) string {
 		return v.String()
 	case []byte:
 		return string(v)
+	case *common_eth.Hash:
+		return v.String()
 	case decimal.Decimal:
 		return v.String()
 	case bool:

@@ -4,6 +4,7 @@ import (
 	"math/big"
 	"strconv"
 
+	common_eth "github.com/ethereum/go-ethereum/common"
 	"github.com/shopspring/decimal"
 )
 
@@ -37,6 +38,10 @@ func ToFloat64(input any) float64 {
 	case string:
 		num, _ := strconv.ParseFloat(v, 64)
 		return num
+	case []byte:
+		return ToFloat64(common_eth.BytesToHash(v).Big())
+	case common_eth.Hash:
+		return ToFloat64(v.Big())
 	case *big.Int:
 		num, _ := strconv.ParseFloat(v.String(), 64)
 		return num

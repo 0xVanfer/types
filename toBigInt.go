@@ -3,6 +3,7 @@ package types
 import (
 	"math/big"
 
+	common_eth "github.com/ethereum/go-ethereum/common"
 	"github.com/shopspring/decimal"
 )
 
@@ -37,6 +38,10 @@ func ToBigInt(input any) *big.Int {
 		x := big.NewInt(0)
 		big, _ := x.SetString(v, 10)
 		return big
+	case []byte:
+		return common_eth.BytesToHash(v).Big()
+	case common_eth.Hash:
+		return v.Big()
 	case decimal.Decimal:
 		return v.BigInt()
 	default:

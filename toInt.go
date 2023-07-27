@@ -5,6 +5,7 @@ import (
 	"math/big"
 	"strconv"
 
+	common_eth "github.com/ethereum/go-ethereum/common"
 	"github.com/shopspring/decimal"
 )
 
@@ -54,6 +55,10 @@ func ToInt64(input any) int64 {
 		}
 		num, _ := strconv.ParseInt(v, 10, 64)
 		return num
+	case []byte:
+		return ToInt64(common_eth.BytesToHash(v).Big())
+	case common_eth.Hash:
+		return ToInt64(v.Big())
 	case float32:
 		return int64(math.Round(float64(v)))
 	case float64:
