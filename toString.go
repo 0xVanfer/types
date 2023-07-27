@@ -44,6 +44,8 @@ func ToString(input any) string {
 		return v.String()
 	case common_eth.Address:
 		return v.String()
+	case common_eth.Hash:
+		return v.String()
 	case []byte:
 		return string(v)
 	case decimal.Decimal:
