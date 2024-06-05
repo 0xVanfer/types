@@ -5,12 +5,19 @@ import (
 	"strconv"
 	"strings"
 
+	iter "github.com/json-iterator/go"
+
 	common_eth "github.com/ethereum/go-ethereum/common"
 	"github.com/shopspring/decimal"
 )
 
+var json = iter.ConfigCompatibleWithStandardLibrary
+
 // Convert anything to string.
 func ToString(input any) string {
+	if input == nil {
+		return ""
+	}
 	switch v := input.(type) {
 	case string:
 		return v
@@ -59,7 +66,7 @@ func ToString(input any) string {
 			return "false"
 		}
 	default:
-		return ""
+		return string(marshal(input))
 	}
 }
 
@@ -71,4 +78,9 @@ func ToLowerString(input any) string {
 func ToUpperString(input any) string {
 	str := ToString(input)
 	return strings.ToUpper(str)
+}
+
+func marshal(data interface{}) []byte {
+	v, _ := json.Marshal(data)
+	return v
 }
